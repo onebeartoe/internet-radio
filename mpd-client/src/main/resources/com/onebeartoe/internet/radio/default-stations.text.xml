@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_07" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station0">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station0">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station0"/>
+         <string>NPR News</string>
+        </void>
+       </void>
+      </object>
+      <string>http://69.166.45.47:8000</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station1">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station1">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station1"/>
+         <string>SciTechTalk</string>
+        </void>
+       </void>
+      </object>
+      <string>http://84.24.108.244:8000/stream/3/</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station2">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station2">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station2"/>
+         <string>KILLER RABBIT RADIO--Commercial free ! Games,horoscopes,news and more.</string>
+        </void>
+       </void>
+      </object>
+      <string>http://216.117.215.150:918</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station3">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station3">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station3"/>
+         <string>ETV Radio Newsmpc</string>
+        </void>
+       </void>
+      </object>
+      <string>http://war.str3am.com:7460/news.mp3</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station4">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station4">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station4"/>
+         <string>BigUpRadio Champion Sound Dancehall Reggae</string>
+        </void>
+       </void>
+      </object>
+      <string>http://50.7.245.130:8000/</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station5">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station5">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station5"/>
+         <string>97 The Edge! www.97theedgeradio.com</string>
+        </void>
+       </void>
+      </object>
+      <string>http://149.255.33.69:8108</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station6">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station6">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station6"/>
+         <string>BigUpRadio SKA</string>
+        </void>
+       </void>
+      </object>
+      <string>http://173.236.79.25:8017</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station7">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station7">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station7"/>
+         <string>KCRW ALL NEWS: World News featuring BBC, NPR and PRI</string>
+        </void>
+       </void>
+      </object>
+      <string>http://scfire-dtc-aa01.stream.aol.com:80/stream/1047</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station8">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station8">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station8"/>
+         <string>181.FM - Comedy Club (*Explicit Content*)</string>
+        </void>
+       </void>
+      </object>
+      <string>http://108.61.73.118:8026</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station9">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station9">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station9"/>
+         <string>GoFM -  No Rules!  We Just Play Stuff!</string>
+        </void>
+       </void>
+      </object>
+      <string>http://65.60.34.34:8030</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station10">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station10">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station10"/>
+         <string>181.fm - The Eagle (Your Home For REAL Classic Rock!)</string>
+        </void>
+       </void>
+      </object>
+      <string>http://108.61.73.117:10002</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station11">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station11">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station11"/>
+         <string>AAN JAMZ - The Latest &amp; Hottest Hip Hop Rap R&amp;B</string>
+        </void>
+       </void>
+      </object>
+      <string>http://50.7.241.10:9006</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station12">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station12">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station12"/>
+         <string>G&apos;D UP RADIO</string>
+        </void>
+       </void>
+      </object>
+      <string>http://174.36.206.217:8577</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station13">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station13">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station13"/>
+         <string>The Bluegrass Mix! -  The Internet&apos;s BEST Bluegrass</string>
+        </void>
+       </void>
+      </object>
+      <string>http://149.255.33.75:8024</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station14">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station14">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station14"/>
+         <string>TrueHipHop.FM Int. 128k - Culture.FM - sponsored by manystyles.de new era caps</string>
+        </void>
+       </void>
+      </object>
+      <string>http://213.186.55.208:9020</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station15">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station15">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station15"/>
+         <string>181.FM - 90&apos;s Alternative</string>
+        </void>
+       </void>
+      </object>
+      <string>http://108.61.73.118:8052</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station16">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station16">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station16"/>
+         <string>idobi Radio: New. Music. Unfiltered. idobi.com</string>
+        </void>
+       </void>
+      </object>
+      <string>http://216.172.153.242:80</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station17">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station17">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station17"/>
+         <string>Acoustic Alternative - Raw, Unplugged Alternative Rock</string>
+        </void>
+       </void>
+      </object>
+      <string>http://94.23.239.191:8006</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station18">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station18">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station18"/>
+         <string>Top Hits Music - SKY.FM - who cares about the chart order, less rap &amp; more hits!</string>
+        </void>
+       </void>
+      </object>
+      <string>http://scfire-dtc-aa02.stream.aol.com:80/stream/1014</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station19">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station19">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station19"/>
+         <string>French Kiss FM (techno)</string>
+        </void>
+       </void>
+      </object>
+      <string>http://88.190.24.47:80</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station20">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station20">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station20"/>
+         <string>TechnoBase.FM - 24h Techno, Dance, Trance, House and More - 128k MP3</string>
+        </void>
+       </void>
+      </object>
+      <string>http://85.17.26.95:80</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station21">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station21">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station21"/>
+         <string>friskyRadio - feelin&apos; frisky? [Trance, Dance, Techno]</string>
+        </void>
+       </void>
+      </object>
+      <string>http://scfire-ntc-aa06.stream.aol.com:80/stream/1015</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.onebeartoe.internet.radio.Station" id="Station22">
+    <void class="com.onebeartoe.internet.radio.Station" method="getField">
+     <string>url</string>
+     <void method="set">
+      <object idref="Station22">
+       <void class="com.onebeartoe.internet.radio.Station" method="getField">
+        <string>name</string>
+        <void method="set">
+         <object idref="Station22"/>
+         <string>Radio Sylvia</string>
+        </void>
+       </void>
+      </object>
+      <string>http://80.237.154.83:8210</string>
+     </void>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

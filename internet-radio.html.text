@@ -1,0 +1,18 @@
+
+Electronics Projects and Kits
+
+        
+
+        [] Raspberry Pi Internet Radio
+
+		sudo apt-get update
+
+		sudo apt-get install mpd mpc
+
+		sudo apt-get install alsa-utils
+
+		sudo apt-get install openjdk-6-jre
+
+		java -cp mpd-client-1.0-SNAPSHOT.jar com.onebeartoe.internet.radio.InternetRadio
+
+        

@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+		
+    <meta name="keywords" content="onebeartoe.com, cross platform remote volume control application">
+	
+    <meta name="description" content="onebeartoe.com remote volume control is a Java-powered desktop application.">
+
+    <link rel="stylesheet" type="text/css" href="http://www.onebeartoe.com/css/corporate-layout.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://www.onebeartoe.com/css/andorid-apps/layout.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://www.onebeartoe.com/css/android-apps/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://www.onebeartoe.com/css/advertisements.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://www.onebeartoe.com/css/native-android-style.css" />
+    
+    <link rel="stylesheet" type="text/css" href="/staticFiles/style.css" />
+	    
+    <link rel="stylesheet" type="text/css" href="/staticFiles/layout.css" />
+	    
+    <title>onebeartoe Internet Radio</title>
+	
+</head>
+
+<body>    
+
+    <div style="color: red">
+	ERROR_MESSAGES
+    </div>
+    
+    <div class="radioText">
+	<h3>
+	    Current station:
+	    <br/>
+	    <br/>
+	    CURRENT_STATION_INFO
+	</h3>		
+    </div>
+											 
+    <br/>
+
+    <br class="clearingBreak"/>
+
+    <div class ="sideBySide" >	
+	<div class="sideBySideLeft" style="margin-top: 0px; width: 32%;">
+	    <form method="POST" action="/currentRadioBand/play">
+		<center>
+		    <input type="submit" value="play" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>				
+		<br/>
+		<br/>
+	    </form>
+	</div>
+
+	<div class="sideBySideLeft" style="margin-top: 0px; width: 32%;">
+	    <form method="POST" action="/currentRadioBand/stop">
+		<center>
+		    <input type="submit" value="stop" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>				
+		<br/>
+		<br/>
+	    </form>
+	</div>
+
+	<div class="sideBySideRight" style="width: 32%;">
+	    <form method="POST" action="/currentRadioBand/nextStation">
+		<center>
+		    <input type="submit" value="next" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		<br/><br/>
+	    </form>				                                	
+	</div>        
+    </div>
+
+    <br class="clearingBreak"/>
+
+<hr/>    
+    
+    <div style="display: block; 										  				 
+			     text-align: center;											  
+			     font-size:1.875em; 
+			     margin-bottom: 1%;">
+	
+	    <h3>Current volume at SERVER_IP:</h3>	  	    
+	    	    
+	    SERVER_VOLUME 
+    </div>
+	        
+    <br class="clearingBreak"/>
+	
+    <div class ="sideBySide" >
+	<div class="sideBySideLeft" style="margin-top: 0px;">
+	    <form method="POST" action="/volume/down">
+		<center>
+		    <input type="submit" value="-" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		    <br/><br/>
+	    </form>
+	</div>
+
+	<div class="sideBySideRight" style="width: 50%;">
+	    <form method="POST" action="/volume/up">
+		<center>
+		    <input type="submit" value="+" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		<br/>
+		<br/>
+	    </form>
+	</div>
+    </div>
+
+    <hr/>
+
+    <br class="clearingBreak"/>
+	
+    <hr/>
+    
+    <div class="radioText">
+	<h3>INTERNET_RADIO_STATIONS_TITLE</h3>
+    </div>
+    
+    <div style="width: 70%; margin-left: auto; margin-right: auto;">
+    CURRENT_RADIO_STATIONS_LIST        
+    </div>
+    
+    <br class="clearingBreak"/>        
+    
+    LOAD_RADIO_BAND_HTML
+
+    <br/>
+
+    <div class="radioText">
+	<a href="http://www.onebeartoe.com" >
+		brought to you by onebeartoe.com
+	</a>
+    </div>
+    
+</body>
+
+</html>
