@@ -12,19 +12,25 @@ import java.util.logging.Logger;
 /**
  * @author rmarquez
  */
-public class UbuntuRadioStationService implements InternetRadioStationService
+public class UbuntuRadioStationService extends OnebeartoeRadioService // implements InternetRadioStationService
 {
 
-    private CommandLine commandLine;
+    private Logger logger;
     
     public UbuntuRadioStationService()
     {
-	commandLine = new BashCommandLine();
+        logger = Logger.getLogger(UbuntuRadioStationService.class.getName());
     }
     
+    /**
+     *
+     * @throws Exception
+     */
+    @Override
     public void stopPlayback() throws Exception 
     {
-	commandLine.execute("mpc", "clear");
+        commandLine.execute("mpc",  "stop");
+//	commandLine.execute("mpc", "clear");
     }
 
     @Override
@@ -56,7 +62,7 @@ public class UbuntuRadioStationService implements InternetRadioStationService
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(UbuntuRadioStationService.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, ex.getMessage());
         }
         
         if(output == null)
@@ -71,6 +77,8 @@ public class UbuntuRadioStationService implements InternetRadioStationService
     @Override
     public boolean play() //throws Exception 
     {
+        System.out.println("play from ubuntu service");
+        
         boolean successful = false;
         try 
         {
@@ -79,7 +87,8 @@ public class UbuntuRadioStationService implements InternetRadioStationService
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(UbuntuRadioStationService.class.getName()).log(Level.SEVERE, null, ex);
+            String message = ex.getMessage();
+            logger.log(Level.SEVERE, message, ex);
         }
         
         return successful;

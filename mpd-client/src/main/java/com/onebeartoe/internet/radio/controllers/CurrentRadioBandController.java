@@ -1,6 +1,7 @@
 
 package com.onebeartoe.internet.radio.controllers;
 
+import com.onebeartoe.internet.radio.RadioModes;
 import com.onebeartoe.internet.radio.Station;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -40,10 +41,10 @@ public class CurrentRadioBandController extends InternaetRadioController
 	    }
 	}
 	
-	List<Station> stations = app.getCurrentPlaylist();	
+	List<Station> stations = applicationContext.getCurrentPlaylist();	
 	stations.add(s);
 	
-	if( app.isDefaultRadioBand() )
+	if( applicationContext.isDefaultRadioBand() )
 	{
             addErrorMessage("Radio stations added to the default list will not be saved.");
 	}
@@ -55,9 +56,9 @@ public class CurrentRadioBandController extends InternaetRadioController
 	    
     public void nextStation() throws Exception 
     {
-	int index = app.getCurrentStation();
+	int index = applicationContext.getCurrentStation();
 	index++;
-	List<Station> stations = app.getCurrentPlaylist();
+	List<Station> stations = applicationContext.getCurrentPlaylist();
 	if( index >= stations.size() )
 	{
 	    index = 0;
@@ -68,14 +69,14 @@ public class CurrentRadioBandController extends InternaetRadioController
 	}
 	else
 	{
-	    app.setCurrentStation(index);
+	    applicationContext.setCurrentStation(index);
 	    Station station = stations.get(index);
             System.out.println("next station: " + station.url);
                     
 //	    List<String> output = commandLine.execute("mpc",  "clear");
 //	    output = commandLine.execute("mpc",  "add", station.url);
 //	    output = commandLine.execute("mpc",  "play");
-            boolean successful = internetRadioService.playStation(station.url);            
+            boolean successful = radioService.playStation(station.url);            
             if(!successful)
             {
                 addErrorMessage("Playing the next station failed");
@@ -85,17 +86,19 @@ public class CurrentRadioBandController extends InternaetRadioController
     
     public void play() throws Exception 
     {
+//        applicationContext.setCurrentRadioMode(RadioModes.INTERNET);
+        
 	String [] strs = request.split("/");
 	if(strs.length > 2)
 	{
 	    String s = strs[2];
 	    int i = Integer.valueOf(s);
-	    List<Station> stations = app.getCurrentPlaylist();
+	    List<Station> stations = applicationContext.getCurrentPlaylist();
 	    if( i < stations.size() )
 	    {
-		app.setCurrentStation(i);
+		applicationContext.setCurrentStation(i);
 		Station station = stations.get(i);
-		boolean successful = app.playStation(station.url);
+		boolean successful = applicationContext.playStation(station.url);
                 if(!successful)
                 {
                     addErrorMessage("The Media Player play command failed for: " + station.url);
@@ -108,7 +111,7 @@ public class CurrentRadioBandController extends InternaetRadioController
 	}
 	else
 	{	    
-            boolean successful = internetRadioService.play();
+            boolean successful = radioService.play();
             if(!successful)
             {
                 addErrorMessage("The play command failed on the Media Player.");
@@ -123,11 +126,11 @@ public class CurrentRadioBandController extends InternaetRadioController
 	{
 	    String s = strs[2];
 	    int i = Integer.valueOf(s);
-	    List<Station> stations = app.getCurrentPlaylist();
+	    List<Station> stations = applicationContext.getCurrentPlaylist();
 	    if( 0 <= i && i < stations.size() )
 	    {
 		stations.remove(i);
-		if( !app.isDefaultRadioBand() )
+		if( !applicationContext.isDefaultRadioBand() )
 		{
 		    radioBandService.savePersonal(stations);
 		}
@@ -143,20 +146,15 @@ public class CurrentRadioBandController extends InternaetRadioController
 	}
     }
     
-    public void stop() //throws IOException //throws Exception 
+    public void stop() throws Exception 
     {
-	List<String> output = null;
         try 
         {
-            commandLine.execute("mpc",  "stop");
+            radioService.stopPlayback();
         } 
-        catch (IOException ex) 
+        catch (Exception ex) 
         {
-            Logger.getLogger(CurrentRadioBandController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(output == null)
-        {
+            logger.log(Level.SEVERE, null, ex);
             errorMessages += "There was a problem stopping the Media Player.";
         }
     }    

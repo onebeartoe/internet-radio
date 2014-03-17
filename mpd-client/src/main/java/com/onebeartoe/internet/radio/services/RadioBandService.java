@@ -14,11 +14,11 @@ import java.util.List;
 public class RadioBandService 
 {
     
-    private String personalStationPath;
+    private String personalInternetStationPath;
     
     public RadioBandService()
     {
-	personalStationPath = System.getProperty("user.home") + "/.onebeartoe/internet-radio/" + "personal-radio-station.xml";
+	personalInternetStationPath = System.getProperty("user.home") + "/.onebeartoe/internet-radio/" + "personal-radio-station.xml";
     }
     
     public List<Station> retreiveDefault() throws Exception
@@ -32,7 +32,7 @@ public class RadioBandService
     
     public List<Station> retreivePersonal() throws Exception
     {	
-	File infile = new File(personalStationPath);
+	File infile = new File(personalInternetStationPath);
 	List<Station> list = (List<Station>) ObjectRetriever.decodeObject(infile);
 	
 	return list;
@@ -40,7 +40,7 @@ public class RadioBandService
     
     public void savePersonal(List<Station> stations) throws Exception
     {
-	File outfile = new File(personalStationPath);
+	File outfile = new File(personalInternetStationPath);
 	File parent = outfile.getParentFile();
 	if( !parent.exists() )
 	{

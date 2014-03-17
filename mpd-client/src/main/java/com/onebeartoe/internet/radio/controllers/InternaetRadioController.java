@@ -2,6 +2,7 @@
 package com.onebeartoe.internet.radio.controllers;
 
 import com.onebeartoe.internet.radio.Station;
+import com.onebeartoe.internet.radio.services.RtlSdrAntennaRadioService;
 import com.onebeartoe.internet.radio.services.InternetRadioStationService;
 import com.onebeartoe.internet.radio.services.RadioBandService;
 import com.onebeartoe.internet.radio.services.UbuntuRadioStationService;
@@ -17,6 +18,7 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class InternaetRadioController extends SocketController 
 {        
@@ -59,15 +61,18 @@ public class InternaetRadioController extends SocketController
     protected String loadPersonalHtml;
     
     protected RadioBandService radioBandService;
-       
-    protected InternetRadioStationService internetRadioService;
+    
+    protected Logger logger;
     
     public InternaetRadioController()
     {
 	commandLine = new BashCommandLine();
-	errorMessages = "";
-	radioBandService = new RadioBandService();
-        internetRadioService = new UbuntuRadioStationService();
+	
+        errorMessages = "";
+	
+        radioBandService = new RadioBandService();
+        
+        logger = Logger.getLogger(this.getClass().getName());
     }
     
     public void addErrorMessage(String errorMessage)
@@ -98,18 +103,18 @@ public class InternaetRadioController extends SocketController
     @Override
     public void process() throws Exception
     {
-	List<Station> stations = app.getCurrentPlaylist();
+	List<Station> stations = applicationContext.getCurrentPlaylist();
 	if(stations.size() > 0)
 	{
-	    int i = app.getCurrentStation();
+	    int i = applicationContext.getCurrentStation();
 	    if( i < stations.size() )
 	    {
-		Station station = stations.get( app.getCurrentStation() );
+		Station station = stations.get( applicationContext.getCurrentStation() );
 		currentStationInfo += station.name + "<br/>";
 	    }	    
 	}
 	
-	List<String> output = internetRadioService.verboseInformation();
+	List<String> output = radioService.verboseInformation();
 	for(String s : output)
 	{
 	    currentStationInfo += s + "<br/>";
@@ -121,6 +126,9 @@ public class InternaetRadioController extends SocketController
 	InputStream instream = getClass().getResourceAsStream(uiHtmlath);				 
 	String html = TextFileReader.readText(instream);
 
+        String mode = applicationContext.getCurrentRadioMode().name();
+        html = html.replace("CURRENT_RADIO_MODE", mode);
+        
 	if(currentStationInfo != null)
 	{
 	    currentStationInfo = currentStationInfo.replaceFirst("null", "");
@@ -150,7 +158,7 @@ public class InternaetRadioController extends SocketController
 	String removeStationIForm = TextFileReader.readText(instream);
 		
 	String loadRadioBandsHtml = "";
-	if( app.isDefaultRadioBand() )
+	if( applicationContext.isDefaultRadioBand() )
 	{
 	    internetRadioStationsTitle = "Default Radio Station";	    
 	    
@@ -200,7 +208,7 @@ public class InternaetRadioController extends SocketController
 	    stationsHtml.append(buttonsHtml);	    	    
 	    
 	    stationsHtml.append("</div>");
-	    
+
 	    i++;
 	}
 	html = html.replace(CURRENT_RADIO_STATIONS_LIST, stationsHtml.toString() );

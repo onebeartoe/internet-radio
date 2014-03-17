@@ -18,9 +18,18 @@ public class RadioBandsController extends InternaetRadioController
     
     public void loadDefault() throws Exception
     {	
-	app.setDefaultRadioBand(true);
-	List<Station> stations = radioBandService.retreiveDefault();	
-	app.setCurrentPlaylistAndPlay(stations);
+	applicationContext.setDefaultRadioBand(true);
+	List<Station> stations = radioBandService.retreiveDefault();
+        try
+        {
+            applicationContext.setCurrentPlaylistAndPlay(stations);
+        }
+	catch(Exception e)
+        {
+            String message = "could not start the defauld readio band: " + e.getMessage();
+            addErrorMessage(message);
+            System.err.println(message);
+        }
     }
     
     /**
@@ -33,7 +42,7 @@ public class RadioBandsController extends InternaetRadioController
     
     public void personal()
     {
-	app.setDefaultRadioBand(false);
+	applicationContext.setDefaultRadioBand(false);
 	List<Station> stations = null;
 	try 
 	{
@@ -41,8 +50,8 @@ public class RadioBandsController extends InternaetRadioController
 	} 
 // catch a java.io.FileNotFoundException instead
         catch (Exception ex) 
-	{	    
-	    Logger.getLogger(RadioBandsController.class.getName()).log(Level.SEVERE, null, ex);
+	{
+            logger.log(Level.SEVERE, null, ex);
 	}
 	
 	if(stations == null)
@@ -52,7 +61,7 @@ public class RadioBandsController extends InternaetRadioController
 	}
 	try 
 	{
-	    app.setCurrentPlaylistAndPlay(stations);
+	    applicationContext.setCurrentPlaylistAndPlay(stations);
 	} 
 	catch (Exception ex) 
 	{

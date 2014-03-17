@@ -32,16 +32,49 @@
     <div style="color: red">
 	ERROR_MESSAGES
     </div>
-    
+
     <div class="radioText">
 	<h3>
-	    Current station:
+	    Current Radio Mode: CURRENT_RADIO_MODE
 	    <br/>
-	    <br/>
-	    CURRENT_STATION_INFO
 	</h3>		
     </div>
-											 
+
+    <div class ="sideBySide" >	
+	<div class="sideBySideLeft" style="margin-top: 0px; width: 49%;">
+	    <form method="POST" action="/radioMode/internet">
+		<center>
+		    <input type="submit" value="Internet" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>				
+		<br/>
+		<br/>
+	    </form>
+	</div>
+
+	<div class="sideBySideRight" style="width: 49%;">
+	    <form method="POST" action="/radioMode/fm">
+		<center>
+		    <input type="submit" value="FM" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		<br/><br/>
+	    </form>				                                	
+	</div>        
+    </div>    
+    
+    <br class="clearingBreak"/>
+    
+    <hr/>
+
+
+    <div class="radioText">
+	<h3>
+	    Current Radio Station:
+            <br/>
+            CURRENT_STATION_INFO
+	    <br/>
+	</h3>		
+    </div>    
+    
     <br/>
 
     <br class="clearingBreak"/>
@@ -79,7 +112,7 @@
 
     <br class="clearingBreak"/>
 
-<hr/>    
+    <hr/>
     
     <div style="display: block; 										  				 
 			     text-align: center;											  

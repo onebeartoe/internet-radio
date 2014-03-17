@@ -1,16 +1,18 @@
 
 package com.onebeartoe.internet.radio.network;
 
+import com.onebeartoe.internet.radio.RadioModes;
 import com.onebeartoe.internet.radio.Station;
-import com.onebeartoe.internet.radio.controllers.CurrentFmRadioBandController;
 import com.onebeartoe.internet.radio.controllers.CurrentRadioBandController;
 import com.onebeartoe.internet.radio.controllers.InvalidRequestController;
 import com.onebeartoe.internet.radio.controllers.RadioBandsController;
+import com.onebeartoe.internet.radio.controllers.RadioModeController;
 import com.onebeartoe.internet.radio.controllers.StaticFilesController;
 import com.onebeartoe.internet.radio.controllers.VolumeController;
 import com.onebeartoe.internet.radio.controllers.SocketController;
 import com.onebeartoe.internet.radio.services.InternetRadioStationService;
 import com.onebeartoe.internet.radio.services.RadioBandService;
+import com.onebeartoe.internet.radio.services.RtlSdrAntennaRadioService;
 import com.onebeartoe.internet.radio.services.UbuntuRadioStationService;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,26 +45,34 @@ public class InternetRadioServer extends Thread
     
     private int currentStation;
     
+    private RadioModes currentRadioMode;
+    
     private RadioBandService radioBandService;
     
     private InternetRadioStationService internetRadioService;
+       
+    private InternetRadioStationService antennaRadioService;
     
     public InternetRadioServer() throws Exception
     {
 	controllers = new HashMap();
+//	controllers.put("currentFmRadioBand", CurrentFmRadioBandController.class);        
 	controllers.put("currentRadioBand", CurrentRadioBandController.class);
 	controllers.put("radioBandsController", RadioBandsController.class);
-	controllers.put("staticFiles", StaticFilesController.class);
+	controllers.put("radioMode", RadioModeController.class);
+        controllers.put("staticFiles", StaticFilesController.class);
 	controllers.put("volume", VolumeController.class);
-	controllers.put("currentFmRadioBand", CurrentFmRadioBandController.class);
-	
+// what about a URL mapping for "/"?
+
 	defaultRadioBand = true;
+        currentRadioMode = RadioModes.INTERNET;
 	
 	radioBandService = new RadioBandService();
 	currentPlaylist = radioBandService.retreiveDefault();
 	currentStation = 0;
 	
-	internetRadioService = new UbuntuRadioStationService();
+        internetRadioService = new UbuntuRadioStationService();
+        antennaRadioService = new RtlSdrAntennaRadioService();
     }
     
     private SocketController connectionFor(Socket client) throws Exception
@@ -92,7 +102,6 @@ public class InternetRadioServer extends Thread
             {
                 request = httpRequestMatcher.group(2);
                 String [] subqueries = request.split("/");
-//                Class c = null;
                 if(subqueries.length > 0)
                 {
                     Class c = controllers.get(subqueries[0]);
@@ -105,12 +114,10 @@ public class InternetRadioServer extends Thread
 
                 if(connection == null)
                 {
-                    
                     connection = new InvalidRequestController();
-//                    connection = new InternaetRadioController();
                 }
                 connection.setRequest(request);
-                connection.setApp(this);
+                connection.setApplicationContext(this);
             }            
         }		
 	
@@ -122,6 +129,26 @@ public class InternetRadioServer extends Thread
 	boolean successful = internetRadioService.playStation(url);
         
         return successful;        
+    }
+    
+    private InternetRadioStationService radioService()
+    {
+        InternetRadioStationService service = null;
+        
+        switch(currentRadioMode)
+        {
+            case FM:
+            {
+                service = antennaRadioService;
+                break;
+            }
+            default:
+            {
+                service = internetRadioService;
+            }                
+        };
+        
+        return service;
     }
     
     @Override
@@ -150,8 +177,13 @@ public class InternetRadioServer extends Thread
 	    while(true)
 	    {
 		Socket client = serverSocket.accept();				
-		SocketController nextServerConnection = connectionFor(client);		
+		SocketController nextServerConnection = connectionFor(client);
+                nextServerConnection.setApplicationContext(this);
 		nextServerConnection.setClient(client);
+                
+                InternetRadioStationService radioService = radioService();                
+                nextServerConnection.setRadioService(radioService);
+                
 		Thread request = new Thread(nextServerConnection);
 		request.start();
 	    }
@@ -192,6 +224,45 @@ public class InternetRadioServer extends Thread
 	internetRadioService.stopPlayback();
     }
     
+    public RadioModes getCurrentRadioMode() {
+        return currentRadioMode;
+    }
+
+    public void setCurrentRadioMode(RadioModes currentRadioMode) throws Exception
+    {
+        switch(currentRadioMode)
+        {
+            case FM:
+            {
+                try
+                {
+                    internetRadioService.stopPlayback();
+                }
+                catch(Exception e)
+                {
+                    String message = "could not stop the Internet radio: " + e. getMessage();
+                    System.err.println(message);
+                }
+                
+                break;
+            }
+            default:
+            {
+                try
+                {
+                    antennaRadioService.stopPlayback();
+                }
+                catch(Exception e)
+                {
+                    String message = "could not stop the antenna radio: " + e. getMessage();
+                    System.err.println(message);
+                }                
+            }
+        };
+        
+        this.currentRadioMode = currentRadioMode;
+    }
+    
     public int getCurrentStation() 
     {
 	return currentStation;
@@ -222,7 +293,8 @@ public class InternetRadioServer extends Thread
 	return defaultRadioBand;
     }
 
-    public void setDefaultRadioBand(boolean defaultRadioBand) {
+    public void setDefaultRadioBand(boolean defaultRadioBand) 
+    {
 	this.defaultRadioBand = defaultRadioBand;
     }
     
