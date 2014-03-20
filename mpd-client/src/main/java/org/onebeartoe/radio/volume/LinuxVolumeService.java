@@ -16,7 +16,9 @@ public class LinuxVolumeService implements VolumeService
     @Override
     public double getVolume() 
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String volumeCommand = "amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]'";
+        
+        return -1;
     }
     
 }
