@@ -1,10 +1,8 @@
 
 package com.onebeartoe.internet.radio.controllers;
 
+import com.onebeartoe.internet.radio.PlaylistSources;
 import com.onebeartoe.internet.radio.Station;
-import com.onebeartoe.internet.radio.services.RadioBandService;
-import com.onebeartoe.io.TextFileReader;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,8 +16,8 @@ public class RadioBandsController extends InternaetRadioController
     
     public void loadDefault() throws Exception
     {	
-	applicationContext.setDefaultRadioBand(true);
-	List<Station> stations = radioBandService.retreiveDefault();
+	applicationContext.setPlaylistSource(PlaylistSources.DEFAULT);
+	List<Station> stations = radioService.retreiveDefault();
         try
         {
             applicationContext.setCurrentPlaylistAndPlay(stations);
@@ -42,11 +40,11 @@ public class RadioBandsController extends InternaetRadioController
     
     public void personal()
     {
-	applicationContext.setDefaultRadioBand(false);
+	applicationContext.setPlaylistSource(PlaylistSources.PERSONAL);
 	List<Station> stations = null;
 	try 
 	{
-	    stations = radioBandService.retreivePersonal();	    
+	    stations = radioService.retreivePersonal();	    
 	} 
 // catch a java.io.FileNotFoundException instead
         catch (Exception ex) 
@@ -59,6 +57,7 @@ public class RadioBandsController extends InternaetRadioController
 	    errorMessages += "Could not load the Persoanl Radio Band";
 	    stations = new ArrayList();
 	}
+        
 	try 
 	{
 	    applicationContext.setCurrentPlaylistAndPlay(stations);

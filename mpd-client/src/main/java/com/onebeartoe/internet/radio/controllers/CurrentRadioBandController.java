@@ -1,6 +1,7 @@
 
 package com.onebeartoe.internet.radio.controllers;
 
+import com.onebeartoe.internet.radio.PlaylistSources;
 import com.onebeartoe.internet.radio.RadioModes;
 import com.onebeartoe.internet.radio.Station;
 import java.io.IOException;
@@ -44,14 +45,19 @@ public class CurrentRadioBandController extends InternaetRadioController
 	List<Station> stations = applicationContext.getCurrentPlaylist();	
 	stations.add(s);
 	
-	if( applicationContext.isDefaultRadioBand() )
-	{
-            addErrorMessage("Radio stations added to the default list will not be saved.");
-	}
-	else
-	{
-	    radioBandService.savePersonal(stations);
-	}
+        switch (applicationContext.getPlaylistSource())
+        {
+            case PERSONAL:
+            {
+                radioService.savePersonal(stations);
+                
+                break;
+            }
+            default:
+            {
+                addErrorMessage("Radio stations added to the default list will not be saved.");
+            }
+        };
     }	    
 	    
     public void nextStation() throws Exception 
@@ -130,9 +136,9 @@ public class CurrentRadioBandController extends InternaetRadioController
 	    if( 0 <= i && i < stations.size() )
 	    {
 		stations.remove(i);
-		if( !applicationContext.isDefaultRadioBand() )
+		if( applicationContext.getPlaylistSource() == PlaylistSources.PERSONAL)
 		{
-		    radioBandService.savePersonal(stations);
+		    radioService.savePersonal(stations);
 		}
 	    }
 	    else

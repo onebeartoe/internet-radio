@@ -1,0 +1,35 @@
+
+    <hr/>
+    
+    <div style="display: block; 										  				 
+			     text-align: center;											  
+			     font-size:1.875em; 
+			     margin-bottom: 1%;">
+	
+	    <h3>Current volume at SERVER_IP:</h3>	  	    
+	    	    
+	    SERVER_VOLUME
+    </div>
+	        
+    <br class="clearingBreak"/>
+	
+    <div class ="sideBySide" >
+	<div class="sideBySideLeft" style="margin-top: 0px;">
+	    <form method="POST" action="/volume/down">
+		<center>
+		    <input type="submit" value="-" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		    <br/><br/>
+	    </form>
+	</div>
+
+	<div class="sideBySideRight" style="width: 50%;">
+	    <form method="POST" action="/volume/up">
+		<center>
+		    <input type="submit" value="+" style="width: 70%; height: 2em; font-size: 3em;">
+		</center>	
+		<br/>
+		<br/>
+	    </form>
+	</div>
+    </div>

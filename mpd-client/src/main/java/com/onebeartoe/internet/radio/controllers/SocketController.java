@@ -2,7 +2,7 @@
 package com.onebeartoe.internet.radio.controllers;
 
 import com.onebeartoe.internet.radio.network.InternetRadioServer;
-import com.onebeartoe.internet.radio.services.InternetRadioStationService;
+import com.onebeartoe.internet.radio.services.RadioStationService;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -28,7 +28,7 @@ public abstract class SocketController implements Runnable
 // must be done    
 // !!!
 // move this this to the application context     
-    protected InternetRadioStationService radioService;
+    protected RadioStationService radioService;
     
     @Override
     public void run() 
@@ -63,7 +63,7 @@ public abstract class SocketController implements Runnable
 	this.client = client;
     }
     
-    public void setRadioService(InternetRadioStationService radioService)
+    public void setRadioService(RadioStationService radioService)
     {
         this.radioService = radioService;
     }

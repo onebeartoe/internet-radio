@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  *
  * @author Roberto Marquez
  */
-public abstract class OnebeartoeRadioService implements InternetRadioStationService
+public abstract class OnebeartoeRadioService implements RadioStationService
 {
     protected CommandLine commandLine;
 
@@ -29,11 +29,14 @@ currentStation.name = "nully!";
 currentStation.frequency = -1.0;
     }
     
-    public Station getCurrentStation() {
+    public Station getCurrentStation() 
+    {
         return currentStation;
     }
 
-    public void setCurrentStation(Station currentStation) {
+    public void setCurrentStation(Station currentStation) 
+    {
         this.currentStation = currentStation;
-    }    
+    }
+    
 }

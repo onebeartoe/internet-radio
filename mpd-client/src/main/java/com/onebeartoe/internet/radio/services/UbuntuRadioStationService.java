@@ -1,9 +1,14 @@
 
 package com.onebeartoe.internet.radio.services;
 
+import com.onebeartoe.internet.radio.Station;
+import com.onebeartoe.io.ObjectRetriever;
+import com.onebeartoe.io.ObjectSaver;
 import com.onebeartoe.os.shell.BashCommandLine;
 import com.onebeartoe.os.shell.CommandLine;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,9 +22,45 @@ public class UbuntuRadioStationService extends OnebeartoeRadioService // impleme
 
     private Logger logger;
     
+    private final String personalInternetStationPath;
+    
     public UbuntuRadioStationService()
     {
         logger = Logger.getLogger(UbuntuRadioStationService.class.getName());
+        
+        personalInternetStationPath = System.getProperty("user.home") + "/.onebeartoe/radio/" + "personal-stations.xml";
+    }
+
+    @Override
+    public List<Station> retreiveDefault() throws Exception
+    {
+        final String path = "/com/onebeartoe/internet/radio/default-stations.text.xml";
+        InputStream instream = getClass().getResourceAsStream(path);        	        	
+	List<Station> stations = (List<Station>) ObjectRetriever.decodeObject(instream);
+	
+	return stations;
+    }
+    
+
+    @Override
+    public List<Station> retreivePersonal() throws Exception
+    {	
+	File infile = new File(personalInternetStationPath);
+	List<Station> list = (List<Station>) ObjectRetriever.decodeObject(infile);
+	
+	return list;
+    }
+    
+    @Override
+    public void savePersonal(List<Station> stations) throws Exception
+    {
+	File outfile = new File(personalInternetStationPath);
+	File parent = outfile.getParentFile();
+	if( !parent.exists() )
+	{
+	    parent.mkdirs();
+	}	
+	ObjectSaver.encodeObject(stations, outfile);
     }
     
     /**
@@ -93,5 +134,13 @@ public class UbuntuRadioStationService extends OnebeartoeRadioService // impleme
         
         return successful;
     }
+ 
+    
+    
+    
+    
+    
+    
+
     
 }

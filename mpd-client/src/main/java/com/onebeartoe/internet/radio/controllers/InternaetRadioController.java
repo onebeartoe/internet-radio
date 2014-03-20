@@ -1,14 +1,10 @@
 
 package com.onebeartoe.internet.radio.controllers;
 
+import com.onebeartoe.internet.radio.PlaylistSources;
 import com.onebeartoe.internet.radio.Station;
-import com.onebeartoe.internet.radio.services.RtlSdrAntennaRadioService;
-import com.onebeartoe.internet.radio.services.InternetRadioStationService;
-import com.onebeartoe.internet.radio.services.RadioBandService;
-import com.onebeartoe.internet.radio.services.UbuntuRadioStationService;
 
 import com.onebeartoe.io.TextFileReader;
-
 
 import com.onebeartoe.os.shell.BashCommandLine;
 import com.onebeartoe.os.shell.CommandLine;
@@ -18,7 +14,10 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.onebeartoe.radio.volume.LinuxVolumeService;
+import org.onebeartoe.radio.volume.VolumeService;
 
 public class InternaetRadioController extends SocketController 
 {        
@@ -50,6 +49,10 @@ public class InternaetRadioController extends SocketController
     
     protected final String REMOVE_STATION_FORM = "REMOVE_STATION_FORM";
     
+    protected final String VOLUME_SECTION = "VOLUME_SECTION";
+    
+    protected final String SERVER_VOLUME = "SERVER_VOLUME";
+    
     protected String currentRadioStationsHtml;
     
     protected String errorMessages;
@@ -60,25 +63,54 @@ public class InternaetRadioController extends SocketController
     
     protected String loadPersonalHtml;
     
-    protected RadioBandService radioBandService;
+//    protected RadioBandService radioBandService;
+    
+    protected VolumeService volumeService;
     
     protected Logger logger;
     
     public InternaetRadioController()
     {
+        logger = Logger.getLogger(this.getClass().getName());
+        
 	commandLine = new BashCommandLine();
 	
         errorMessages = "";
 	
-        radioBandService = new RadioBandService();
+//        radioBandService = new RadioBandService();
         
-        logger = Logger.getLogger(this.getClass().getName());
+        volumeService = new LinuxVolumeService();
     }
     
     public void addErrorMessage(String errorMessage)
     {
         errorMessages += "<br/><br/>";
         errorMessages += errorMessage;
+    }
+    
+    private String buildVolumeSection()
+    {
+        StringBuilder sb = new StringBuilder();
+        try 
+        {
+            double volume = volumeService.getVolume();
+            
+            String inpath = path + "volume-section.html";
+            InputStream instream = getClass().getResourceAsStream(inpath);
+            
+            String volumeSection = TextFileReader.readText(instream);
+            volumeSection = volumeSection.replace(SERVER_VOLUME, String.valueOf(volume) );
+            
+            sb.append(volumeSection);
+        } 
+        catch (Exception ex) 
+        {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+            
+            sb.append("volume section not available");
+        }
+        
+        return sb.toString();
     }
     
     @Override
@@ -134,6 +166,9 @@ public class InternaetRadioController extends SocketController
 	    currentStationInfo = currentStationInfo.replaceFirst("null", "");
 	    html = html.replace(CURRENT_STATION_INFO, currentStationInfo);
 	}
+        
+        String volumeSection = buildVolumeSection();
+        html = html.replace(VOLUME_SECTION, volumeSection);
 			
 	html = html.replace(ERROR_MESSAGES, errorMessages);
 	
@@ -155,19 +190,19 @@ public class InternaetRadioController extends SocketController
 	
 	inpath = path + "removeStationIForm.html";
 	instream = getClass().getResourceAsStream(inpath);
-	String removeStationIForm = TextFileReader.readText(instream);
+	String removeStationIForm = TextFileReader.readText(instream);       
 		
 	String loadRadioBandsHtml = "";
-	if( applicationContext.isDefaultRadioBand() )
+	if(applicationContext.getPlaylistSource() == PlaylistSources.DEFAULT)
 	{
-	    internetRadioStationsTitle = "Default Radio Station";	    
+	    internetRadioStationsTitle = "Builtin Radio Stations";
 	    
 	    loadRadioBandsHtml += loadDefault;
 	    loadRadioBandsHtml += loadPersonal;	    	    
 	}
 	else
 	{
-	    internetRadioStationsTitle = "Personal Radio Station";
+	    internetRadioStationsTitle = "Personal Radio Stations";
 	    	    
 	    inpath = path + "newRadioBandForm.html";
 	    instream = getClass().getResourceAsStream(inpath);
@@ -177,7 +212,7 @@ public class InternaetRadioController extends SocketController
 	    loadRadioBandsHtml += loadPersonal;
 	    loadRadioBandsHtml += loadDefault;
 	}
-	html = html.replace(INTERNET_RADIO_STATIONS_TITLE, internetRadioStationsTitle);
+	html = html.replace(INTERNET_RADIO_STATIONS_TITLE, internetRadioStationsTitle);        
 	html = html.replace(LOAD_RADIO_BAND_HTML, loadRadioBandsHtml);
 
 	StringBuilder stationsHtml = new StringBuilder();
@@ -201,7 +236,7 @@ public class InternaetRadioController extends SocketController
 	    
 	    String form = playStationIForm.replace(STATION_INDEX, String.valueOf(i) );
 	    String buttonsHtml = individualStationButtonsHtml.replace(PLAY_STATION_FORM, form);
-	    
+
 	    form = removeStationIForm.replace(STATION_INDEX, String.valueOf(i) );
 	    buttonsHtml = buttonsHtml.replace(REMOVE_STATION_FORM, form);
 	    

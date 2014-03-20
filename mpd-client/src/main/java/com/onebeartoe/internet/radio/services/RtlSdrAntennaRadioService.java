@@ -1,5 +1,7 @@
 package com.onebeartoe.internet.radio.services;
 
+import com.onebeartoe.internet.radio.RadioModes;
+import com.onebeartoe.internet.radio.Station;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -20,6 +22,24 @@ public class RtlSdrAntennaRadioService extends OnebeartoeRadioService //implemen
 {
     private Thread radioPlayer;
     private Process radioProcess;
+    
+    List<Station> defaultStations;
+    
+    public RtlSdrAntennaRadioService()
+    {
+        Station s = new Station();
+        s.name = "Kono";
+        s.frequency = 101.1;
+        s.type = RadioModes.FM;
+        defaultStations = new ArrayList();
+        defaultStations.add(s);
+        
+        s = new Station();
+        s.name = "Kzep";
+        s.frequency = 104.5;
+        s.type = RadioModes.FM;
+        defaultStations.add(s);
+    }
 
     @Override
     public boolean play() throws Exception 
@@ -81,6 +101,22 @@ public class RtlSdrAntennaRadioService extends OnebeartoeRadioService //implemen
     }
 
     @Override
+    public List<Station> retreiveDefault() throws Exception 
+    {
+        return defaultStations;
+    }
+
+    @Override
+    public List<Station> retreivePersonal() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void savePersonal(List<Station> stations) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }    
+    
+    @Override
     public void stopPlayback() throws Exception 
     {
         System.err.println("stop called from antenna service - 2");
@@ -125,5 +161,7 @@ public class RtlSdrAntennaRadioService extends OnebeartoeRadioService //implemen
         
         return output;
     }
+
+
 
 }
