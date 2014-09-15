@@ -10,14 +10,13 @@ public class VolumeController extends InternaetRadioController
 {
     public void up() throws Exception
     {
-	List<String> output = commandLine.execute("amixer", "set", "Master", "5+");
-
+        List<String> output = volumeService.raiseVolume(15);
         printOutput(output);
     }
     
     public void down() throws Exception
     {
-	List<String> output = commandLine.execute("amixer", "set", "Master", "5-");
+	List<String> output = volumeService.lowerVolume(15);
         
         printOutput(output);
     }
@@ -26,7 +25,7 @@ public class VolumeController extends InternaetRadioController
     {
         for(String line : output)
         {
-            System.err.println(line);
+            System.out.println(line);
         }
     }
 }

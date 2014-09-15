@@ -71,14 +71,14 @@ public class UbuntuRadioStationService extends OnebeartoeRadioService // impleme
     public void stopPlayback() throws Exception 
     {
         commandLine.execute("mpc",  "stop");
-//	commandLine.execute("mpc", "clear");
+	commandLine.execute("mpc", "clear");
     }
 
     @Override
-    public boolean playStation(String url) //throws Exception 
+    public boolean playStation(String url)
     {
         boolean successful = false;
-        try //throws Exception
+        try
         {
             stopPlayback();
             commandLine.execute("mpc",  "add", url);	    
@@ -87,7 +87,7 @@ public class UbuntuRadioStationService extends OnebeartoeRadioService // impleme
         } 
         catch (Exception ex) 
         {            
-            Logger.getLogger(UbuntuRadioStationService.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         
         return successful;

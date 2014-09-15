@@ -64,11 +64,14 @@ public class CurrentRadioBandController extends InternaetRadioController
     {
 	int index = applicationContext.getCurrentStation();
 	index++;
+        
 	List<Station> stations = applicationContext.getCurrentPlaylist();
 	if( index >= stations.size() )
 	{
+            System.err.println("The playlist index (" + index + ") is greater than the station count, " + stations.size() );
 	    index = 0;
 	}
+        
 	if(stations.size() == 0)
 	{
 	    errorMessages += "There are no station loaded.  Try loading the default radio band or adding to your personal radio band.";
@@ -77,7 +80,7 @@ public class CurrentRadioBandController extends InternaetRadioController
 	{
 	    applicationContext.setCurrentStation(index);
 	    Station station = stations.get(index);
-            System.out.println("next station: " + station.url);
+            System.out.println("Next station: " + station.url);
                     
 //	    List<String> output = commandLine.execute("mpc",  "clear");
 //	    output = commandLine.execute("mpc",  "add", station.url);
