@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
-//import onebeartoe.io.SerializedObjects;
-
+/**
+ * @deprecated use the version at https://github.com/onebeartoe/java-libraries
+ * @author Roberto Marquez
+ */
 public class ObjectSaver
 {
     public static boolean encodeObject(Object obj, File outfile) {

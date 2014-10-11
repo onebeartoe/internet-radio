@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 /**
+ * @deprecated use the version at https://github.com/onebeartoe/java-libraries
  * @author rmarquez
  */
 public class ObjectRetriever 

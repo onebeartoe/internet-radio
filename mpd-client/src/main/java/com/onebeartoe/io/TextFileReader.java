@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * @deprecated use the version at https://github.com/onebeartoe/java-libraries
+ * @author Roberto Marquez
+ */
 public class TextFileReader
 {
     public static String readText(InputStream instream) 
