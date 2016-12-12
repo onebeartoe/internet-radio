@@ -6,7 +6,7 @@ Related videos:
 
 [![BeagleBone Black Internet Radio Challenge - onebeartoe - Project Recap and Final Demo](http://img.youtube.com/vi/hKd9Hup4XZA/0.jpg)](https://www.youtube.com/watch?v=hKd9Hup4XZA "BeagleBone Black Internet Radio Challenge - onebeartoe - Project Recap and Final Demo")
 
-[![Title](http://img.youtube.com/vi/AAAAAAAAAAAAAAA/0.jpg)](https://www.youtube.com/watch?v=AAAAAAAAAAAAAAA "Title")
+[![BeagleBone Black Internet Radio Challenge - onebeartoe Road Test Review](http://img.youtube.com/vi/immOjiOUrSQ/0.jpg)](https://www.youtube.com/watch?v=immOjiOUrSQ "BeagleBone Black Internet Radio Challenge - onebeartoe Road Test Review")
 
 More from the author:
 
