@@ -1,16 +1,16 @@
+
 package com.onebeartoe.internet.radio;
 
-import com.onebeartoe.io.ObjectSaver;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import org.onebeartoe.io.ObjectSaver;
 
 public class DefaultPlaylistCreation 
 {
-    
     public static void main( String[] args ) throws Exception
     {
 	File infile = new File("src/main/resources/com/onebeartoe/internet/radio/default-stations.text");	
@@ -47,5 +47,4 @@ public class DefaultPlaylistCreation
 	File outfile = new File(infile.getParentFile(), infile.getName() + ".xml");
 	ObjectSaver.encodeObject(stations, outfile);
     }
-    
 }

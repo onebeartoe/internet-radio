@@ -4,8 +4,6 @@ package com.onebeartoe.internet.radio.controllers;
 import com.onebeartoe.internet.radio.PlaylistSources;
 import com.onebeartoe.internet.radio.Station;
 
-import com.onebeartoe.io.TextFileReader;
-
 import com.onebeartoe.os.shell.BashCommandLine;
 import com.onebeartoe.os.shell.CommandLine;
 
@@ -16,6 +14,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.onebeartoe.io.TextFileReader;
 import org.onebeartoe.radio.volume.LinuxVolumeService;
 import org.onebeartoe.radio.volume.VolumeService;
 
@@ -63,8 +62,6 @@ public class InternaetRadioController extends SocketController
     
     protected String loadPersonalHtml;
     
-//    protected RadioBandService radioBandService;
-    
     protected VolumeService volumeService;
     
     protected Logger logger;
@@ -76,8 +73,6 @@ public class InternaetRadioController extends SocketController
 	commandLine = new BashCommandLine();
 	
         errorMessages = "";
-	
-//        radioBandService = new RadioBandService();
         
         volumeService = new LinuxVolumeService();
     }

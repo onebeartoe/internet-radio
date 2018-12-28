@@ -1,8 +1,8 @@
 
 package com.onebeartoe.internet.radio.controllers;
 
-import com.onebeartoe.io.TextFileReader;
 import java.io.InputStream;
+import org.onebeartoe.io.TextFileReader;
 
 /**
  * @author rmarquez
@@ -30,6 +30,5 @@ public class StaticFilesController extends SocketController
 	String html = TextFileReader.readText(instream);
 	boolean includeHeader = false;
 	sendHttpResponse(html, includeHeader);	
-    }    
-        
+    }        
 }
