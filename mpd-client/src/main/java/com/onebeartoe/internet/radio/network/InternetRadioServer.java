@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class InternetRadioServer extends Thread
 {
     private ServerSocket serverSocket;
     
-    String serverConnectionClass;
+    private String serverConnectionClass;
     
     public int port = 1978;
     
@@ -41,16 +42,13 @@ public class InternetRadioServer extends Thread
     private Map<String, Class> controllers;
   
     private PlaylistSources playlistSource;
-//    private boolean defaultRadioBand;    
     
     private List<Station> currentPlaylist;
     
     private int currentStation;
     
     private RadioModes currentRadioMode;
-    
-//    private RadioBandService radioBandService;
-    
+       
     private RadioStationService internetRadioService;
        
     private RadioStationService antennaRadioService;
@@ -76,9 +74,7 @@ public class InternetRadioServer extends Thread
 
         radioService = internetRadioService;
         
-//	radioBandService = new RadioBandService();
 	currentPlaylist = radioService.retreiveDefault();
-//	currentPlaylist = radioBandService.retreiveDefault();
         
 	currentStation = 0;
     }
@@ -133,25 +129,8 @@ public class InternetRadioServer extends Thread
     }        
 
     public List<Station> getCurrentPlaylist() throws Exception
-    {
-//        List<Station> stations = null;
-//        
-//        switch (playlistSource)
-//        {
-//            case PERSONAL:
-//            {
-//                stations = radioService.retreivePersonal();
-//                
-//                break;
-//            }
-//            default:
-//            {
-//                stations = radioService.retreiveDefault();
-//            }
-//        };
-  
+    {  
         return currentPlaylist;
-//	return stations;
     }
 
     public RadioModes getCurrentRadioMode() 
@@ -203,8 +182,10 @@ public class InternetRadioServer extends Thread
 	{
 	    serverSocket = new ServerSocket(port);
 	    InetAddress addr = InetAddress.getLocalHost();
+            
 	    byte[] ipAddr = addr.getAddress();
-	    String ipAddrStr = "";
+	    
+            String ipAddrStr = "";
 	    for (int i = 0; i < ipAddr.length; i++) 
 	    {
 		if (i > 0)
@@ -215,9 +196,14 @@ public class InternetRadioServer extends Thread
 		ipAddrStr += String.valueOf(ipAddr[i] & 0xff);
 	    }
 	    ip = ipAddrStr;
+            
 	    String hostname = addr.getHostName();
-	    System.out.println(ipAddr.toString() + " - " + hostname + " - " + ipAddrStr + " - " + addr.getHostAddress() 
-		    + " - " + serverSocket.getInetAddress().getHostAddress() + " - " + serverSocket.getLocalSocketAddress().toString() );
+            
+	    System.out.println( Arrays.toString(ipAddr) + 
+                                " - " + hostname + " - " + ipAddrStr + 
+                                " - " + addr.getHostAddress() + 
+                                " - " + serverSocket.getInetAddress().getHostAddress() + 
+                                " - " + serverSocket.getLocalSocketAddress().toString() );
 	    
 	    while(true)
 	    {
@@ -330,9 +316,7 @@ public class InternetRadioServer extends Thread
             }
         };        
     }
-    
 
-    
     public void setCurrentRadioMode(RadioModes radioMode) throws Exception
     {
         stopPlayback();
@@ -352,25 +336,13 @@ public class InternetRadioServer extends Thread
 	this.port = port;
     }    
     
-    public void setPlaylistSource(PlaylistSources playlistSource) {
+    public void setPlaylistSource(PlaylistSources playlistSource) 
+    {
         this.playlistSource = playlistSource;
     }
-    
 
-    
     public void setCurrentPlaylist(List<Station> currentPlaylist) 
     {
 	this.currentPlaylist = currentPlaylist;
     }
-
-//    public boolean isDefaultRadioBand() 
-//    {
-//	return defaultRadioBand;
-//    }
-//
-//    public void setDefaultRadioBand(boolean defaultRadioBand) 
-//    {
-//	this.defaultRadioBand = defaultRadioBand;
-//    }
-    
 }
