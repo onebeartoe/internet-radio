@@ -1,0 +1,7 @@
+  223  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 101.1M | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  224  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 99.5M  | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  225  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 1200M  | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  226  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 1600M  | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  227  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 101.1M | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  228  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 105.4M | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
+  229  sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib rtl_fm -M wbfm -f 104.5M | play -r 32k -t raw -e s -b 16 -c 1 -V1 -
