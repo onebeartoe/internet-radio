@@ -75,7 +75,13 @@ public class UbuntuRadioStationService extends OnebeartoeRadioService // impleme
     @Override
     public boolean playStation(String url)
     {
+        if(url == null)
+        {
+            throw new NullPointerException();
+        }
+        
         boolean successful = false;
+        
         try
         {
             stopPlayback();
