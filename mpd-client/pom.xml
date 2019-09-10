@@ -25,8 +25,7 @@
 	</repository>
     </repositories>
 
-    <dependencies>
-        
+    <dependencies>        
         <dependency>
             <groupId>org.onebeartoe</groupId>
             <artifactId>onebeartoe-system</artifactId>
